@@ -3,10 +3,11 @@ package de.lkrause.EIO.industryPlanner;
 import java.util.Collections;
 import java.util.Map;
 
+import de.lkrause.EIO.industryPlanner.interfaces.BlueprintInterface;
+import de.lkrause.EIO.industryPlanner.rawMaterials.InputMaterial;
+
 public class Reaction implements BlueprintInterface {
 
-	private int mMatEfficiency;
-	private int mTimeEfficiency;
 	private int mRunsLeft;
 	private Map<InputMaterial, Integer> mInputMaterials;
 	private boolean mIsBPO;
@@ -16,15 +17,19 @@ public class Reaction implements BlueprintInterface {
 	private InputMaterial mOutcomeMaterial;
 	private int mOutcomeAmount;
 	
+	public Reaction(int pBPID) {
+		// TODO Database Call for blueprint info
+
+	}
 
 	@Override
 	public int getME() {
-		return mMatEfficiency;
+		return 0;
 	}
 
 	@Override
 	public int getTE() {
-		return mTimeEfficiency;
+		return 0;
 	}
 
 	@Override
@@ -50,10 +55,7 @@ public class Reaction implements BlueprintInterface {
 
 	@Override
 	public int getType() {
-		if (mIsBPO) {
-			return BPTypes.BPO;
-		}
-		return BPTypes.BPC;
+		return BPTypes.REACTION;
 	}
 
 	@Override

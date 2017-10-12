@@ -1,7 +1,9 @@
-package de.lkrause.EIO.industryPlanner;
+package de.lkrause.EIO.industryPlanner.collections;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import de.lkrause.EIO.industryPlanner.rawMaterials.InputMaterial;
 
 public class Materials {
 

@@ -1,6 +1,8 @@
-package de.lkrause.EIO.industryPlanner;
+package de.lkrause.EIO.industryPlanner.interfaces;
 
 import java.util.Map;
+
+import de.lkrause.EIO.industryPlanner.rawMaterials.InputMaterial;
 
 public interface BlueprintInterface {
 	

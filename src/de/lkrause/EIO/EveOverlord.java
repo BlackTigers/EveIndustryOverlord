@@ -1,11 +1,12 @@
 package de.lkrause.EIO;
 
 import java.awt.GridLayout;
+import java.security.KeyStore.LoadStoreParameter;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import de.lkrause.EIO.industryPlanner.OreReprocessing;
+import de.lkrause.EIO.industryPlanner.rawMaterials.OreReprocessing;
 
 public class EveOverlord extends JFrame {
 
@@ -18,7 +19,12 @@ public class EveOverlord extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		new EveOverlord();
+		loadStaticData();
 		OreReprocessing.initOres();
+		new EveOverlord();
+	}
+	
+	private static void loadStaticData() {
+		// TODO Load all Types + BPs from Database into model
 	}
 }

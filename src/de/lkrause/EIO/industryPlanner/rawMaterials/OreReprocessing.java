@@ -1,4 +1,4 @@
-package de.lkrause.EIO.industryPlanner;
+package de.lkrause.EIO.industryPlanner.rawMaterials;
 
 
 public class OreReprocessing {

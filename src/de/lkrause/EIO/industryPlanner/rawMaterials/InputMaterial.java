@@ -1,6 +1,6 @@
-package de.lkrause.EIO.industryPlanner;
+package de.lkrause.EIO.industryPlanner.rawMaterials;
 
-import de.lkrause.EIO.exceptions.MissingBlueprintException;
+import de.lkrause.EIO.exceptions.BlueprintException;
 
 public class InputMaterial {
 
@@ -12,11 +12,11 @@ public class InputMaterial {
 	private boolean mCreatedByBlueprint;
 	private int mBlueprintID;
 	
-	public int getBlueprintID() throws MissingBlueprintException {
+	public int getBlueprintID() throws BlueprintException {
 		if (mCreatedByBlueprint) {
 			return mBlueprintID;
 		}
-		throw new MissingBlueprintException("Item can't be created by blueprint");
+		throw new BlueprintException("Item can't be created by blueprint");
 	}
 	
 	public boolean isBuildable() {

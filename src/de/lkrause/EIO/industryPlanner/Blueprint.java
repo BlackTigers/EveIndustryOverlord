@@ -3,6 +3,10 @@ package de.lkrause.EIO.industryPlanner;
 import java.util.Collections;
 import java.util.Map;
 
+import de.lkrause.EIO.exceptions.BlueprintException;
+import de.lkrause.EIO.industryPlanner.interfaces.BlueprintInterface;
+import de.lkrause.EIO.industryPlanner.rawMaterials.InputMaterial;
+
 public class Blueprint implements BlueprintInterface {
 
 
@@ -12,57 +16,56 @@ public class Blueprint implements BlueprintInterface {
 	private Map<InputMaterial, Integer> mInputMaterials;
 	private boolean mIsBPO;
 	private long mRunTime;
-	private long[] mResearchTimes;
+	private long mResearchLevel;
+	private long[] mResearchTimes = new long[10];
 	private long mCopyTime;
 	private InputMaterial mOutcomeMaterial;
 	private int mOutcomeAmount;
 	
 	/**
 	 * Initialize a Blueprint with given Parameters
-	 * @param pME The Material Efficiency of the Blueprint
-	 * @param pTE The Time Efficiency of the Blueprint
+	 * @param pBPID The Blueprint identifier (eve wise)
 	 * @param pIsBPO True if the Blueprint is original
-	 * @param pInputMaterials Map of all Input Materials and amounts
-	 * @param pRunTime Base Time needed per run
-	 * @param pResearchTimes Unbonussed research times for each level
-	 * @param pCopyTime Base Copy Time per run
 	 */
-	public Blueprint(int pME, int pTE, boolean pIsBPO, Map<InputMaterial, Integer> pInputMaterials, long pRunTime, long[] pResearchTimes, long pCopyTime) {
-		mInputMaterials.putAll(pInputMaterials);
-		mMatEfficiency = pME;
-		mTimeEfficiency = pTE;
+	public Blueprint(int pBPID, boolean pIsBPO) {
 		mIsBPO = pIsBPO;
-		mRunTime = pRunTime;
-		mCopyTime = pCopyTime;
-		if (pResearchTimes.length == 10) {
-			mResearchTimes = pResearchTimes;			
-		}
+		// TODO Database Call for blueprint info
+		mRunTime = 0; // TODO Get from Database
+		mCopyTime = (long) (0.8 * mRunTime);
+		mResearchLevel = 0; // TODO Get from Database
+		mResearchTimes[0] = mResearchLevel * 105;
+		mResearchTimes[1] = mResearchLevel * 250;
+		mResearchTimes[2] = mResearchLevel * 595;
+		mResearchTimes[3] = mResearchLevel * 1414;
+		mResearchTimes[4] = mResearchLevel * 3360;
+		mResearchTimes[5] = mResearchLevel * 8000;
+		mResearchTimes[6] = mResearchLevel * 19000;
+		mResearchTimes[7] = mResearchLevel * 45255;
+		mResearchTimes[8] = mResearchLevel * 107700;
+		mResearchTimes[9] = mResearchLevel * 256000;
 	}
 	
 	/**
 	 * Set the Material Efficiency of the blueprint
 	 * @param pME The targeted ME
-	 * @return True if successfull, False if out of bounds
 	 */
-	public boolean setME(int pME) {
+	public void setME(int pME) throws BlueprintException {
 		if (pME <= 10 && pME >= 0) {
 			mMatEfficiency = pME;
-			return true;
 		}
-		return false;
+		throw new BlueprintException("Level out of bounds, must be between 1 and 10");
+
 	}
 
 	/**
 	 * Set the Time Efficiency of the blueprint
 	 * @param pTE The targeted TE
-	 * @return True if successfull, False if out of bounds
 	 */
-	public boolean setTE(int pTE) {
+	public void setTE(int pTE) throws BlueprintException {
 		if (pTE <= 20 && pTE >= 0 && pTE % 2 == 0) {
 			mTimeEfficiency = pTE;
-			return true;
 		}
-		return false;
+		throw new BlueprintException("Level out of bounds, must be between 1 and 10");
 	}
 
 	@Override
@@ -114,6 +117,13 @@ public class Blueprint implements BlueprintInterface {
 		return mResearchTimes;
 	}
 
+	public long getResearchTime(byte pLevel) throws BlueprintException {
+		if (pLevel <= 10 && pLevel > 0) {
+			return mResearchTimes[pLevel - 1];
+		}
+		throw new BlueprintException("Level out of bounds, must be between 1 and 10");
+	}
+	
 	@Override
 	public long getBaseCopyTime() {
 		return mCopyTime;

@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.lkrause.EIO.industryPlanner.InputMaterial;
-import de.lkrause.EIO.industryPlanner.Materials;
+import de.lkrause.EIO.industryPlanner.collections.Materials;
+import de.lkrause.EIO.industryPlanner.rawMaterials.InputMaterial;
 
 public class CharacterSettings {
 
