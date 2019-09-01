@@ -1,0 +1,77 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.settings-pane {
+	-fx-border-style: solid;
+	-fx-border-color: gray;
+	-fx-border-width: 1;
+	-fx-border-radius: 3
+}
+
+.settings-pane>.title {
+	-fx-background-color: lightGray;
+	-fx-pref-percentage-width: 100;
+	-fx-padding: 8;
+	-fx-font-weight: bold;
+}
+
+.settings-pane>.content {
+	-fx-padding: 8;
+}
+
+.settings-inputs {
+	-fx-hgap: 8;
+}
+
+.settings-inputs>ComboBox {
+	-fx-pref-width: 150;
+}
+
+.settings-inputs>Label {
+	-fx-pref-width: 65;
+}
+
+.results-pane {
+	-fx-padding: 0 0 0 8;
+}
+
+.results-pane>.caption {
+	-fx-padding: 8;
+	-fx-font-weight: bold;
+}
+
+.results-pane>.buttons {
+	
+	-fx-padding: 8;
+}
+
+.results-pane>.buttons>Button {
+	-fx-padding: 6;
+}
+
+.numeric-column {
+	-fx-alignment: center-right;
+}
+
+.item-column {
+	-fx-pref-width: 320;
+}
+
+.quantity-column {
+	-fx-pref-width: 100;
+}
+
+.waste-column {
+	-fx-pref-width: 100;
+}
+
+.volume-column {
+	-fx-pref-width: 120;
+}
+
+.unit-price-column {
+	-fx-pref-width: 150;
+}
+
+.sum-column {
+	-fx-pref-width: 150;
+}
